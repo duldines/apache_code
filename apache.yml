@@ -1,0 +1,19 @@
+# Install Apache web server
+- name: Install Apache
+  apt:
+    name: apache2
+    state: present
+
+# Configure Apache
+- name: Configure Apache
+  template:
+    src: /path/to/apache.conf.j2
+    dest: /etc/apache2/apache2.conf
+  notify:
+    - Restart Apache
+
+# Restart Apache
+- name: Restart Apache
+  service:
+    name: apache2
+    state: restarted
